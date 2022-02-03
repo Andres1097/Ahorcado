@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Juego Ahorcado</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+        <main class="">
+            <div class="container">
+                <h1 class="titulo">Ahorcado</h1>
+                    <input class="inicio" type="button" value="Iniciar Juego">
+            </div>
+
+            <table>
+              <tbody id="tabla">
+              </tbody>
+            </table>
+
+            <span id="label">LETRAS USADAS</span>
+            <input class="letras" id="elegidas" type="text" value="Letras">
+
+            <div class="anuncio">
+              <span class="invisible" id="ganador" style="color: green">Ganaste, Felicidades!</span>
+              <span class="invisible" id="perdedor" style="color: red">Fin del Juego</span>
+            </div>
+
+            <canvas id="ahorcado" width="1200xp" height="800xp"></canvas>
+            <script src="canvas.js"></script>
+            <script src="tablero.js"></script>
+            <script src="script.js"></script>
+        </main>
+  </body>
+</html>
