@@ -6,26 +6,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
 
-  <body>
+  <body style="background-color: rgb(226, 208, 208);">
         <main class="">
             <div class="container">
                 <h1 class="titulo">Ahorcado</h1>
                     <input class="inicio" type="button" value="Iniciar Juego">
             </div>
-
+            
             <table>
-              <tbody id="tabla">
-              </tbody>
-            </table>
+               <tbody id="tabla">
+               </tbody>
+             </table>
 
             <span id="label">LETRAS USADAS</span>
-            <input class="letras" id="elegidas" type="text" value="Letras">
+             <input class="letras" id="elegidas" type="text" value="" disabled>
 
             <div class="anuncio">
-              <span class="invisible" id="ganador" style="color: green">Ganaste, Felicidades!</span>
+               <span class="invisible" id="ganador" style="color: green">Ganaste, Felicidades!</span>
               <span class="invisible" id="perdedor" style="color: red">Fin del Juego</span>
             </div>
-
+            
             <canvas id="ahorcado" width="1200xp" height="800xp"></canvas>
             <script src="canvas.js"></script>
             <script src="tablero.js"></script>

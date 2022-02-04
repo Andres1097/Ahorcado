@@ -13,15 +13,15 @@ var pincel = pantalla.getContext("2d");
     
 function errado(intento){       // Funcion con un "Selector" en base a la opcion que enviemos
     switch (intento){
-        case 1: lineaCuerpo(225, 575, 225, 300); break;
-        case 2: lineaCuerpo(225, 300, 400, 300); break;
-        case 3: lineaCuerpo(400, 300, 400, 330); break;
+        case 1: lineaCuerpo(225, 575, 225, 300); break;     // Poste
+        case 2: lineaCuerpo(225, 300, 400, 300); break;     // Techo
+        case 3: lineaCuerpo(400, 300, 400, 330); break;     // Soporte
         case 4: cabeza(); break;
-        case 5: lineaCuerpo(400, 390, 400, 500); break;
-        case 6: lineaCuerpo(400, 500, 350, 550); break;
-        case 7: lineaCuerpo(400, 500, 450, 550); break;
-        case 8: lineaCuerpo(400, 410, 350, 470); break;
-        case 9: lineaCuerpo(400, 410, 450, 470); finP(); break;
+        case 5: lineaCuerpo(400, 390, 400, 500); break;     // Cuerpo
+        case 6: lineaCuerpo(400, 500, 350, 550); break;     // Pierna Izquierda
+        case 7: lineaCuerpo(400, 500, 450, 550); break;     // Pierna Derecha
+        case 8: lineaCuerpo(400, 410, 350, 470); break;     // Brazo Izquierdo
+        case 9: lineaCuerpo(400, 410, 450, 470); finP(); break;     // Brazo Derecho y Fin del Juego
         default: 0; break;
     }
 }

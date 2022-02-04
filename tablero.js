@@ -3,26 +3,25 @@ function dibujarTablero(palabra){
     var guion = "_";
     var rango = palabra.length;                                         // Variable con la cantidad de letras de la palabra
     var tabla = document.querySelector("#tabla");
-    tabla.appendChild(construirTrPalabra("celdas", palabra, rango));    //Agregamos el conjunto de celdas a la tabla
-    tabla.appendChild(construirTrGuiones("guiones", guion, rango));    
+    tabla.appendChild(construirTrPalabra("celdas", rango));    //Agregamos el conjunto de celdas a la tabla
+    tabla.appendChild(construirTrGuiones("guiones", rango));    
 }
 
-function construirTrPalabra(clase, palabra, rango){
+function construirTrPalabra(clase, rango){
     var tr = document.createElement("tr");          // Creamos el conjunto de celdas
-    var arregloPalabra = palabra.split("");         // Arreglo con cada dato de palabra
     tr.classList.add(clase);                        // Le agregamos una clase al conjunto
     for(var index = 0; index < rango; index++){
-        tr.appendChild(construirTdPalabra(index, arregloPalabra[index]));   // Asignamos cada celda a la clase padre
+        tr.appendChild(construirTdPalabra(index));   // Asignamos cada celda a la clase padre
     }
     return tr;
 }
 
-function construirTrGuiones(clase, dato, rango){
+function construirTrGuiones(clase, rango){
     var tr = document.createElement("tr");  
     tr.classList.add(clase);                
     var indice = 0;
         while(rango != indice){                         // Agrega celdas hasta que alcance el rango indicado
-            tr.appendChild(construirTdGuiones(dato));   // Asignamos cada celda a la clase padre
+            tr.appendChild(construirTdGuiones());   // Asignamos cada celda a la clase padre
             indice++;
         }
     return tr;
@@ -30,16 +29,17 @@ function construirTrGuiones(clase, dato, rango){
 
 // Diferencias de Tr? TrGuiones es un bucle que repite guiones, mientras que TrPalabra agrega cada letra en cada celda
 
-function construirTdGuiones(dato){
+function construirTdGuiones(){
     var td = document.createElement("td");  // Creamos una celda
-    td.textContent = dato;                  // Le agregamos el contenido
+    td.textContent = "_";                  // Le agregamos el contenido
     return td;
 }
 
-function construirTdPalabra(clase, dato){
+function construirTdPalabra(id){
     var td = document.createElement("td");  
-    td.classList.add(clase);                // Agregamos la clase a la celda
-    td.textContent = dato;               
+    td.id = id;                             // Agregamos una id a la clase para recorrer
+    td.classList.add("secreto");            // Clase general identificadora
+    td.textContent = " ";                   // Inicialmente cada letra llevara un espacio vacio
     return td;
 }
 

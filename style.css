@@ -38,7 +38,7 @@
 }
 
 .celdas{
-    color: red;
+    color: blue;
     position: relative;
     left: 24em;
     top: 28em;
@@ -57,23 +57,30 @@
     z-index: 1;
 }
 
-#ahorcado{
-    position: absolute;
-    left: 5em;
-    z-index: 0;
-}
-
 .letras{
-    border-color: lightgray;
-    padding: .5em;
+    background-color: transparent;
+    border-color: transparent;
+    width: 25em;
+    height: 3em;
     position: relative;
-    left: 60em;
+    left: 55em;
     top: 30em;
     z-index: 1;
+    text-transform: uppercase;
+    text-align: center;
+    color: black;
+    font-weight: bold;
 }
 
 #label{
     position: relative;
     left: 60em;
     top: 23em;
+    font-style: italic;
+}
+
+#ahorcado{
+    position: absolute;
+    left: 5em;
+    z-index: 0;
 }
