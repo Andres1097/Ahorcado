@@ -21,8 +21,8 @@ function errado(intento){       // Funcion con un "Selector" en base a la opcion
         case 6: lineaCuerpo(400, 500, 350, 550); break;     // Pierna Izquierda
         case 7: lineaCuerpo(400, 500, 450, 550); break;     // Pierna Derecha
         case 8: lineaCuerpo(400, 410, 350, 470); break;     // Brazo Izquierdo
-        case 9: lineaCuerpo(400, 410, 450, 470); finP(); break;     // Brazo Derecho y Fin del Juego
-        default: 0; break;
+        case 9: lineaCuerpo(400, 410, 450, 470); perdedor(); break;     // Brazo Derecho y Fin del Juego
+        default: break;
     }
 }
 
