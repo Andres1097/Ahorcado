@@ -1,6 +1,9 @@
 var pantalla = document.querySelector("#ahorcado");
 var pincel = pantalla.getContext("2d");
 
+pincel.lineWidth = 3;
+
+function dibujarHorca(){
     pincel.beginPath();
     pincel.moveTo(200, 600);
 
@@ -9,6 +12,7 @@ var pincel = pantalla.getContext("2d");
     pincel.lineTo(200, 600);
 
     pincel.stroke();
+}
 
     
 function errado(intento){       // Funcion con un "Selector" en base a la opcion que enviemos

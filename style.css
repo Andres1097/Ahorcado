@@ -8,7 +8,7 @@
     position: relative;
     width: 80px;
     height: 500px;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     top: 150px;
     margin: auto;
@@ -22,7 +22,11 @@
     font-weight: bold;
     color: white;
     margin: 30px 0px;
-    z-index: 3;
+    z-index: 4;
+}
+
+.inicio:hover{
+    background-color: rgb(0, 110, 255);
 }
 
 .anuncio{
@@ -82,4 +86,60 @@
     position: absolute;
     left: 5em;
     z-index: 0;
+}
+
+#reinicio{
+    position: absolute;
+    top: 60em;
+    left: 80em;
+    padding: .5em;
+    border-radius: 10%;
+    font-weight: bold;
+    z-index: 3;
+    background-color: green;
+}
+
+#reinicio:hover{
+    background-color: greenyellow;
+}
+
+#fin{
+    position: absolute;
+    top: 80em;
+}
+
+#texto{
+    position: absolute;
+    top: 10em;
+    left: -3em;
+    padding: 2em;
+    border-radius: 1em;
+    
+}
+
+#confirmar{
+    position: absolute;
+    top: 17em;
+    left: 3em;
+    padding: .5em;
+    background-color: blue;
+    color: white;
+}
+
+#confirmar:hover{
+    background-color: rgb(0, 110, 255);
+}
+
+#agregado{
+    position: absolute;
+    top: 14.7em;
+    left: 7em;
+    color: lightgreen;
+    font-weight: bold;
+}
+
+footer{
+    position: fixed;
+    top: 39.5em;
+    z-index: 3;
 }

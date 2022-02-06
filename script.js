@@ -1,30 +1,41 @@
-/* Falta agregar comparaciones, cargarlo al tablero y retoques de animacion */
-
-
-// errado(intento)             | Funcion principal de canvas.js
-// dibujarTablero(palabra)     | Funcion principal de tablero.js
-
-// Logica de juego--------¬
+//  Declaracion de Variables    //
 
 var validador = true;           // Validador para evitar sobreescritura de tablero
-var arregloPalabras = ["oracle","alura","latam","one"];
+var arregloPalabras = ["programacion", "validar", "vacaciones", "desarrollador"];
 var letrasSecretas = [];
 var letrasUsadas = [];
 var intentos = 0;
 
-var tabla = document.querySelector("#tabla");       // Clase Tablero
+//  Declaracion de Clases e IDs //
+
+var storage = window.localStorage;      // Almacenamiento local
+
 var yaUsadas = document.querySelector(".letras");   // Clase input que presenta letras usadas
 var inicio = document.querySelector(".inicio");     // Boton Inicio
+var reinicio = document.querySelector("#reinicio"); // Boton reinicio
+var fin = document.querySelector("#fin");           // Boton auxiliar para scroll
+var palabraIngresada = document.querySelector("#texto");   // Cuadro para agregar Palabras
+var boton = document.querySelector("#confirmar");       // Boton Confirmar
+var listo = document.querySelector("#agregado");        // Confirmacion de Agregado
+
+//  Inicio del Juego   //
+
+dibujarHorca();
+
+    boton.onclick = agregarPalabra;
 
     inicio.addEventListener("click", function(){    // Inicio del juego, se desactiva una vez empieza
         if(validador) empezar();
     });
 
+//  Funciones Logica del Juego  //
+
 function empezar(){
     validador = false;
+    fin.scrollIntoView({behavior: "smooth"});
     
     var elegida = arregloPalabras[Math.floor(Math.random()*arregloPalabras.length)].toUpperCase();
-        dibujarTablero(elegida);                            // Preparo tablero del juego
+        dibujarTablero(elegida);
         letrasSecretas = elegida.split("");                 // Arreglo con la palabra secreta
 
     inicio.addEventListener("keypress", function(event){
@@ -36,7 +47,7 @@ function empezar(){
                 if(compararEleccion(tecla) != "") letraGanadora(compararEleccion(tecla), tecla);
                 else letraPerdedora();
         } else alert("Letra invalida");
-        guionesCompletos();
+        guionesCompletos();                 // Declara si el juego se completo con exito
     });
 
 }
@@ -94,17 +105,40 @@ function guionesCompletos(){
 }
 
 function ganador(){
-    finG();
+    finG();         // Cartel Ganaste!
     finalizar();
 }
 
 function perdedor(){
-    finP();
+    finP();         // Cartel Perdiste!
     finalizar();
 }
 
 function finalizar(){
     inicio.disabled = true;                 // Deshabilita el boton para finalizar el juego
+    reinicio.classList.remove("invisible"); // Aparece el boton de reinicio
 }
 
-function reinicio(){}                       // Proximamente...
+function agregarPalabra(){
+    var palabra = palabraIngresada.value;
+    if(!validarTexto(palabra)){
+        arregloPalabras.push(palabra);              // Agrego nueva palabra al arreglo base
+        storage.setItem(arregloPalabras, palabra);  // Guardo todos los datos del arreglo en almacenamiento
+        palabraIngresada.value = "";
+        listo.classList.remove("invisible");
+        setInterval(() => {
+            listo.classList.add("invisible");       // Desaparece la confirmacion despues del intervalo
+        }, 2000);
+    } else alert("Palabra invalida");
+}
+
+function validarTexto(palabra){
+    var flag = false
+    for(var indiceValido = 0; indiceValido < palabra.length; indiceValido++){
+        if(!validarLetra(palabra.charCodeAt(indiceValido))){
+            flag = true;                                // En caso de encontrar discrepancias, cancela
+            break;                                      // el bucle y avisa que no es valida
+        }
+    }
+    return flag;
+}
