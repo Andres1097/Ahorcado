@@ -2,50 +2,62 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego Ahorcado</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/style.css">
   </head>
 
-  <body background="fondo2.png">
-        <main class="">
-            <div class="container">
-                <h1 class="titulo">Ahorcado</h1>
-                <input class="inicio" type="button" value="Iniciar Juego">
-                <input id="texto" type="text" placeholder="Ingrese palabra aqui..." autofocus>
-                <button id="confirmar">Agregar</button>
-                <span class="invisible" id="agregado">Listo!</span>
+  <body>
+    <header>
+      <section class="menu">
+        <h1 class="menu--titulo">Ahorcado</h1>
+        <button class="menu--inicio">Iniciar Juego</button>
+        <input class="menu--cuadroTexto" type="text" placeholder="Ingrese palabra aqui..." autofocus>
+        <button class="menu--confirmacionBoton">Agregar</button>
+      </section>
+    </header>
+
+    <main>
+      <section class="juego">
+
+        <canvas class="juego--ahorcado" width="200px" height="400xp"></canvas>
+
+        <div class="juego__contenedor">
+
+          <section class="juego__contenedor__barra">
+            <!--  Display de letras invalidas  -->
+            <div class="juego__contenedor__barra__invalidas">
+              <label from="invalidas">LETRAS USADAS</label>
+              <input class="juego__contenedor__barra__invalidas--display" id="invalidas" disabled>
             </div>
 
-              <table>
-                <tbody id="tabla">
-                </tbody>
-              </table>
+            <!--  Bloque de Anuncios de finalizacion  -->
+            <div class="juego__contenedor__anuncios"></div>
 
-              <span id="label" style="font-weight: bold;">LETRAS USADAS</span>
-              <input class="letras" id="elegidas" type="text" value="" disabled>
+            <button class="juego__contenedor--reinicio" onclick="location.reload()">Reiniciar Juego</button>
 
-              <div class="anuncio">
-                <span class="invisible" id="ganador" style="color: lightgreen">Ganaste, Felicidades!</span>
-                <span class="invisible" id="perdedor" style="color: red">Fin del Juego</span>
-              </div>
-              
-              <input class="invisible" type="button" id="reinicio" value="Reiniciar Juego" onclick="location.reload()">
-              <canvas id="ahorcado" width="1200xp" height="800xp"></canvas>
+          </section>
 
-              <span id="fin"></span>
+          <!--  Tablero del Juego  -->
+          <table>
+            <tbody class="juego__contenedor__tablero"></tbody>
+          </table>
 
-            <footer id="piePagina">
-              <p>
-                @ 2022
-                <a href = "http://www.linkedin.com/in/fsd-andres">
-                  <b>Julian Andres Gonzalez</b>
-                </a>
-              </p>
-            </footer>
+        </div>
 
-            <script src="canvas.js"></script>
-            <script src="tablero.js"></script>
-            <script src="script.js"></script>
-        </main>
+      </section>
+
+    </main>
+
+    <footer>
+      <section class="footer">
+          <a href = "http://www.linkedin.com/in/fsd-andres">&copy2022 Julian Andres Gonzalez</a>
+      </section>
+    </footer>
+
+    <script src="scripts/canvas.js"></script>
+    <script src="scripts/tablero.js"></script>
+    <script src="scripts/juego.js"></script>
   </body>
 </html>

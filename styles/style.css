@@ -1,0 +1,161 @@
+html{
+    font-weight: bolder;
+}
+
+body{
+    background-image: url("fondo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+main{
+    background-image: url("fred.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    height: 75vh;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu--titulo{
+    font-size: 3rem;
+    font-style: italic;
+    color: #69ca56;
+}
+
+.menu--inicio{
+    text-decoration: none;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    background: linear-gradient(#0c93a5, #420da5);
+    color: #fdfdfd;
+    margin: 0.5rem 0;
+    font-weight: bolder;
+}
+
+.menu--inicio:hover{
+    background: linear-gradient(rgb(18, 184, 206), #530fcf);
+}
+
+.menu--cuadroTexto{
+    transition: 0.5s;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.menu--confirmacionBoton{
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background: linear-gradient(#0c93a5, #420da5);
+    color: #fdfdfd;
+    font-weight: bolder;
+}
+
+.menu--confirmacionBoton:hover{
+    background: linear-gradient(rgb(18, 184, 206), #530fcf);
+}
+
+.juego{
+    width: 100vw;
+    display: none;
+    justify-content: space-evenly;
+}
+
+.juego__contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-grow: 0.75;
+}
+
+.juego__contenedor__barra{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+
+.juego__contenedor__barra__invalidas{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.juego__contenedor__barra__invalidas label{
+    font-style: italic;
+}
+
+.juego__contenedor__barra__invalidas--display{
+    font-size: 0.75rem;
+    width: 12rem;
+    height: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.juego__contenedor__anuncios{
+    transform: translateY(5rem) translateX(-1.5rem);
+    font-size: 1.5rem;
+}
+
+.juego__contenedor__anuncios--ganador{color: chartreuse;}
+.juego__contenedor__anuncios--perdedor{color: red;}
+
+.juego__contenedor--reinicio{
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(#420da5, #0c93a5);
+    color: #fdfdfd;
+    margin: 0.5rem 0;
+    font-weight: bolder;
+}
+
+.juego__contenedor__tablero{
+    display: flex block;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.juego__contenedor__tablero--celdas, 
+.juego__contenedor__tablero--guiones{
+    font-size: 2rem;
+}
+
+.juego__contenedor__tablero--celdas{
+    transform: translateY(2rem);
+}
+
+.juego__contenedor--reinicio:hover{
+    background: linear-gradient(#530fcf, rgb(18, 184, 206));
+}
+
+.footer{
+    background-color: #b43684;
+    padding: 1.75rem;
+    font-size: 1.5rem;
+}
+
+.footer a{text-decoration: none;}
