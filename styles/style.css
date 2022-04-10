@@ -10,7 +10,6 @@ body{
 
 header{
     height: 100vh;
-    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -74,7 +73,6 @@ main{
 }
 
 .juego{
-    width: 100vw;
     display: none;
     justify-content: space-evenly;
 }
@@ -83,7 +81,6 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    flex-wrap: wrap;
     flex-grow: 0.75;
 }
 
@@ -159,3 +156,25 @@ main{
 }
 
 .footer a{text-decoration: none;}
+
+@media screen and (max-width: 576px) {
+    
+    .juego--ahorcado{
+        width: 30%;
+    }
+
+    .juego__contenedor{
+        width: 60%;
+    }
+
+    .juego__contenedor__tablero--celdas{
+        transform: translateX(-5rem) translateY(7rem);
+    }
+    .juego__contenedor__tablero--guiones{
+        transform: translateX(-5rem) translateY(5rem);
+    }
+
+    .juego__contenedor__anuncios{
+        transform: translateY(5rem);
+    }
+}

@@ -1,14 +1,18 @@
 //  Declaracion de Variables    //
 
 var validador = true;           // Validador para evitar sobreescritura de tablero
-var arregloPalabras = ["programacion", "validar", "vacaciones", "desarrollador"];
+var arregloBase = ["validar", "desarrollador"];         // Arreglo con palabras predefinidas
+
+// En caso de que el almacenamiento interno no este vacio, se crea la variable con el contenido
+if(localStorage.getItem("Almacen") != null) var arregloAlmacen = localStorage.getItem("Almacen").split(",");
+
+// En caso de que no se haya definido aun el arregloAlmacen, el juego recibira arregloBase
+var arregloJuego = arregloAlmacen || arregloBase;
 var letrasSecretas = [];
 var letrasUsadas = [];
 var intentos = 0;
 
 //  Declaracion de Clases e IDs //
-
-var storage = window.localStorage;      // Almacenamiento local
 
 var botonIniciar = document.querySelector(".menu--inicio");       // Boton Iniciar Juego
 
@@ -30,24 +34,23 @@ botonIniciar.addEventListener("click", function(){    // Inicio del juego, se de
 //  Funciones Logica del Juego  //
 
 function empezar(){
-    fred();
+    sacarFred();
     dibujarHorca();
     validador = false;
-    var elegida = arregloPalabras[Math.floor(Math.random()*arregloPalabras.length)].toUpperCase();
+    var elegida = arregloJuego[Math.floor(Math.random()*arregloJuego.length)].toUpperCase();
 
     dibujarTablero(elegida);
     letrasSecretas = elegida.split("");                 // Arreglo con la palabra secreta
-
     botonIniciar.addEventListener("keypress", function(event){
-
+        reActivarTeclado();
         var codigoTecla = event.keyCode;                    // CodeChar para validar que sean solo letras
         var tecla = event.key.toUpperCase();                // Recibe la letra y seteamos en Mayuscula
 
-        if(validarLetra(codigoTecla) && !noRepetir(tecla)){              // Si es valido, continuo
+        if(validarLetra(codigoTecla) && noRepiteLetra(tecla)){      // Si es valido y no repite, continuo
                 agregarLetra(tecla);
                 if(compararEleccion(tecla) != "") letraGanadora(compararEleccion(tecla), tecla);
                 else letraPerdedora();
-        } else alert("Letra invalida");
+        }
 
         guionesCompletos();                 // Declara si el juego se completo con exito
     });
@@ -56,11 +59,11 @@ function empezar(){
 
 /* Funcion extra, agregar palabra al storage */
 function agregarPalabra(){
-    var palabra = palabraIngresada.value;
-    if(!validarPalabraAgregada(palabra) && palabra != ""){
-        arregloPalabras.push(palabra);              // Agrego nueva palabra al arreglo base
-        storage.setItem(arregloPalabras, palabra);  // Guardo todos los datos del arreglo en almacenamiento local
-        palabraIngresada.value = "";                // Borro lo que tenia en el input
+    var palabra = palabraIngresada.value.toLowerCase();
+    if(validarPalabraAgregada(palabra)){
+        arregloJuego.push(palabra);                  // Agrego nueva palabra al arreglo base
+        localStorage.setItem("Almacen", arregloJuego);    // Guardo todos los datos del arreglo en almacenamiento local
+        palabraIngresada.value = "";                    // Borro lo que tenia en el input
         
         toggle(palabraIngresada, "chartreuse");
     } else {
@@ -135,8 +138,16 @@ function guionesCompletos(){                                // Funcion que indic
 
 //      Validaciones     //
 
-function noRepetir(letra){
-    return letrasUsadas.includes(letra);        // Comprueba que la letra ya se haya usado
+function noRepiteLetra(letra){
+    return !(letrasUsadas.includes(letra));        // Comprueba que la letra fue usada
+}
+
+function noRepitePalabra(palabra){ 
+    return !(arregloJuego.includes(palabra));      // Comprueba que la palabra no haya sido usada
+}
+
+function palabraVacia(palabra){
+    return palabra != "";                           // Comprueba que no este vacio
 }
 
 function validarLetra(letra){                       // Recibe codigo unicode de letra
@@ -144,24 +155,31 @@ function validarLetra(letra){                       // Recibe codigo unicode de 
 }
 
 function validarPalabraAgregada(palabra){
-    var flag = false;
-    for(var indiceValido = 0; indiceValido < palabra.length; indiceValido++){
-        if(!validarLetra(palabra.charCodeAt(indiceValido))){
-            flag = true;                                // En caso de encontrar discrepancias, cancela
-            break;                                      // el bucle y avisa que no es valida
+    var flag = true;
+    if(palabraVacia(palabra) && noRepitePalabra(palabra)){
+        for(var indiceValido = 0; indiceValido < palabra.length; indiceValido++){
+            if(!validarLetra(palabra.charCodeAt(indiceValido))){
+                flag = false;                                // En caso de encontrar discrepancias, cancela
+                break;                                       // el bucle y avisa que no es valida
+            }
         }
-    }
+    } else flag = false;
     return flag;
 }
 
-function toggle(input, color){
+function toggle(input, color){                  // Animacion Error/Correcto
     input.style.background = color;
     setTimeout(() => {
-        input.style.background = "#fdfdfd";      // Desaparece la confirmacion despues del intervalo
+        input.style.background = "#fdfdfd";     // Desaparece la confirmacion despues del intervalo
     }, 2000);
 }
 
-function fred(){
+function reActivarTeclado(){
+    botonIniciar.click();
+    letrasInvalidas.focus();
+}
+
+function sacarFred(){                                // Funcion Extra: Eliminacion de Protector y visualizacion del juego
     var main = document.querySelector("main");
     var footer = document.querySelector("footer");
     var juego = document.querySelector(".juego");
