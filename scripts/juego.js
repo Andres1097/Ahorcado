@@ -23,6 +23,8 @@ var letrasInvalidas = document.querySelector(".juego__contenedor__barra__invalid
 var botonReinicio = document.querySelector(".juego__contenedor--reinicio");    // Boton Reinicio al finalizar el juego
 var anuncios = document.querySelector(".juego__contenedor__anuncios");         // Bloque de anuncios de resultados finales
 
+var botonTeclado = document.querySelector(".juego__contenedor__movil--teclado");
+var teclado = document.querySelector("#tecladoMovil");
 //  Inicio del Juego   //
 
 botonConfirmar.onclick = agregarPalabra;
@@ -34,27 +36,30 @@ botonIniciar.addEventListener("click", function(){    // Inicio del juego, se de
 //  Funciones Logica del Juego  //
 
 function empezar(){
+    var elegida = arregloJuego[Math.floor(Math.random()*arregloJuego.length)].toUpperCase();
+    validador = false;
+
     sacarFred();
     dibujarHorca();
-    validador = false;
-    var elegida = arregloJuego[Math.floor(Math.random()*arregloJuego.length)].toUpperCase();
-
     dibujarTablero(elegida);
+
     letrasSecretas = elegida.split("");                 // Arreglo con la palabra secreta
-    botonIniciar.addEventListener("keypress", function(event){
-        reActivarTeclado();
-        var codigoTecla = event.keyCode;                    // CodeChar para validar que sean solo letras
-        var tecla = event.key.toUpperCase();                // Recibe la letra y seteamos en Mayuscula
+    activarTeclado();
+}
 
-        if(validarLetra(codigoTecla) && noRepiteLetra(tecla)){      // Si es valido y no repite, continuo
-                agregarLetra(tecla);
-                if(compararEleccion(tecla) != "") letraGanadora(compararEleccion(tecla), tecla);
-                else letraPerdedora();
-        }
+function activarTeclado(){
+    teclado.focus();
+    var tecla = teclado.value.toUpperCase();                // Recibe la letra y seteamos en Mayuscula
+    var codigoTecla = tecla.charCodeAt();                   // CodeChar para validar que sean solo letras
+    teclado.value = "";
 
-        guionesCompletos();                 // Declara si el juego se completo con exito
-    });
+    if(validarLetra(codigoTecla) && noRepiteLetra(tecla)){      // Si es valido y no repite, continuo
+        agregarLetra(tecla);
+        if(compararEleccion(tecla) != "") letraGanadora(compararEleccion(tecla), tecla);
+        else letraPerdedora();
+    }
 
+    guionesCompletos();                 // Declara si el juego se completo con exito
 }
 
 /* Funcion extra, agregar palabra al storage */
@@ -139,7 +144,9 @@ function guionesCompletos(){                                // Funcion que indic
 //      Validaciones     //
 
 function noRepiteLetra(letra){
-    return !(letrasUsadas.includes(letra));        // Comprueba que la letra fue usada
+    var coincidencia = letrasUsadas.includes(letra);
+    if(coincidencia) toggle(letrasInvalidas, "red");
+    return !coincidencia;                          // Comprueba que la letra fue usada
 }
 
 function noRepitePalabra(palabra){ 
@@ -168,23 +175,18 @@ function validarPalabraAgregada(palabra){
 }
 
 function toggle(input, color){                  // Animacion Error/Correcto
-    input.style.background = color;
+    input.style.border = "2px solid " + color;
     setTimeout(() => {
-        input.style.background = "#fdfdfd";     // Desaparece la confirmacion despues del intervalo
-    }, 2000);
-}
-
-function reActivarTeclado(){
-    botonIniciar.click();
-    letrasInvalidas.focus();
+        input.style.border = "";     // Desaparece la confirmacion despues del intervalo
+    }, 1500);
 }
 
 function sacarFred(){                                // Funcion Extra: Eliminacion de Protector y visualizacion del juego
     var main = document.querySelector("main");
-    var footer = document.querySelector("footer");
+    var footer = document.querySelector(".footer");
     var juego = document.querySelector(".juego");
     
     main.style.background = "none";
     juego.style.display = "flex";
-    footer.scrollIntoView({behavior: "smooth"});
+    footer.scrollIntoView();
 }

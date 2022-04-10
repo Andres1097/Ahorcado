@@ -29,7 +29,7 @@
             <!--  Display de letras invalidas  -->
             <div class="juego__contenedor__barra__invalidas">
               <label from="invalidas">LETRAS USADAS</label>
-              <input class="juego__contenedor__barra__invalidas--display" id="invalidas" disabled>
+              <textarea class="juego__contenedor__barra__invalidas--display" id="invalidas" disabled></textarea>
             </div>
 
             <!--  Bloque de Anuncios de finalizacion  -->
@@ -37,6 +37,11 @@
 
             <button class="juego__contenedor--reinicio" onclick="location.reload()">Reiniciar Juego</button>
 
+            <div class="juego__contenedor__movil">
+              <label class="juego__contenedor__movil--teclado" for="tecladoMovil">Reactivar Teclado</label>
+              <input type="text" id="tecladoMovil" onkeyup="activarTeclado()">
+            </div>
+            
           </section>
 
           <!--  Tablero del Juego  -->

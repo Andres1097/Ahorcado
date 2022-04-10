@@ -1,3 +1,4 @@
+
 html{
     font-weight: bolder;
 }
@@ -113,7 +114,7 @@ main{
 }
 
 .juego__contenedor__anuncios{
-    transform: translateY(5rem) translateX(-1.5rem);
+    transform: translateY(7.5rem) translateX(-1.5rem);
     font-size: 1.5rem;
 }
 
@@ -128,6 +129,29 @@ main{
     color: #fdfdfd;
     margin: 0.5rem 0;
     font-weight: bolder;
+}
+
+.juego__contenedor__movil{
+    display: flex;
+    flex-direction: column;
+}
+
+.juego__contenedor__movil--teclado{
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    background: linear-gradient(#420da5, #0c93a5);
+    color: #fdfdfd;
+    font-weight: bolder;
+    transform: translateY(0.5rem);
+}
+
+.juego__contenedor__movil--teclado:hover{
+    background: linear-gradient(#530fcf, rgb(18, 184, 206));
+}
+
+#tecladoMovil{
+    position: fixed;
+    opacity: 0;
 }
 
 .juego__contenedor__tablero{
@@ -175,6 +199,6 @@ main{
     }
 
     .juego__contenedor__anuncios{
-        transform: translateY(5rem);
+        transform: translateY(10rem);
     }
 }
